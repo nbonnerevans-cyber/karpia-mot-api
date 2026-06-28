@@ -54,6 +54,15 @@ app.post("/fetch_mot_data", async (req, res) => {
       success: true,
       data: motData
     })
-  } catch (err) {
+    } catch (err) {
     console.error(err)
-    return res.status(500).
+    return res.status(500).json({
+      error: "Unexpected error",
+      details: err.message
+    })
+  }
+}) // closes the app.post route
+
+const port = process.env.PORT || 3000
+app.listen(port, () => console.log(`Server running on port ${port}`))
+
